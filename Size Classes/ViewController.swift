@@ -8,18 +8,29 @@
 
 import UIKit
 
+extension UIUserInterfaceSizeClass: CustomStringConvertible {
+	public var description: String {
+		switch self {
+		case .Unspecified:
+			return "Unspecified"
+		case .Compact:
+			return "Compact"
+		case .Regular:
+			return "Regular"
+		}
+	}
+}
+
 class ViewController: UIViewController {
 
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		// Do any additional setup after loading the view, typically from a nib.
+	@IBOutlet weak var horizontalSizeClassLabel: UILabel!
+	@IBOutlet weak var verticalSizeClassLabel: UILabel!
+	
+	override func viewDidLayoutSubviews() {
+		super.viewDidLayoutSubviews()
+		
+		horizontalSizeClassLabel.text = "\(view.traitCollection.horizontalSizeClass)"
+		verticalSizeClassLabel.text = "\(view.traitCollection.verticalSizeClass)"
 	}
-
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
-	}
-
-
 }
 
